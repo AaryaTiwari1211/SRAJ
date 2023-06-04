@@ -27,11 +27,19 @@
                 font-size: 1.6rem;
                 font-weight: 300;
                 padding: 1rem;
-                margin: 1rem auto;
+                margin: 3rem auto;
                 width: 100%;
                 border: 1px solid #777;
                 border-radius: 3px;
                 outline: none;
+                border-radius:15px ;
+            }
+            .p{
+                text-align: center;
+            }
+            button {
+                margin: 3rem auto;
+                border-radius: 10px;
             }
 
             .links {
@@ -44,6 +52,11 @@
                 text-align: center;
                 margin: 1rem;
             }
+        }
+
+        button {
+            margin: 1rem auto;
+            border-radius: 10px;
         }
 
         .register {
@@ -79,4 +92,8 @@
     .img {
         display: none;
     }
+}
+
+._form_otqrr_10>p:nth-child(4) {
+    text-align: center;
 }
