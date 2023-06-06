@@ -1,5 +1,5 @@
 import React from 'react'
-import loaderImg from '../../assets/loader2.gif'
+import loaderImg from '../../assets/audio.svg'
 import styles from './Lodaer.module.scss'
 import ReactDOM from 'react-dom'
 function Loader() {

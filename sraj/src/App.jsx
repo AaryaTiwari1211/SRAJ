@@ -11,10 +11,15 @@ import Register from './pages/auth/register/Register';
 import ResetPassword from './pages/auth/reset/ResetPassword';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Header />
       <div className="App">
         <Routes>
@@ -28,7 +33,7 @@ function App() {
           <Route path="/resetpassword" element={<ResetPassword />} />
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   )
 }
