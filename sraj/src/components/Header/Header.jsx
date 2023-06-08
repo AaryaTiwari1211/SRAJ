@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Header.module.scss'
 import { Link, NavLink } from 'react-router-dom'
-import { FaShoppingCart, FaTimes } from 'react-icons/fa'
+import { FaShoppingCart, FaTimes, FaUserCircle } from 'react-icons/fa'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useState } from 'react'
 import { auth } from '../../firebase/firebase'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import { useDispatch } from 'react-redux'
+import { ShowOnLogin, ShowOnLogout } from '../LinkHide/LinkHide'
+import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,7 +46,9 @@ const Logo = () => {
 
 function Header() {
     const [menu, setMenu] = useState(false)
+    const [username, setUsername] = useState('')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const toggleMenu = () => {
         setMenu(!menu);
     }
@@ -51,15 +58,35 @@ function Header() {
     const logoutUser = (e) => {
         signOut(auth).then(() => {
             console.log("Logged out successfully")
+            dispatch(REMOVE_ACTIVE_USER())
             toast.success("Logged out successfully")
             navigate('/login')
         }).catch((error) => {
             toast.error("An error occured!!")
         });
     }
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                if (user.displayName == null) {
+                    const mail = user.email.substring(0, user.email.indexOf("@"))
+                    const userName = mail.charAt(0).toUpperCase() + mail.slice(1)
+                    setUsername(userName)
+                }
+                setUsername(user.displayName)
+                dispatch(SET_ACTIVE_USER({
+                    email: user.email,
+                    username: user.displayName ? user.displayName : username,
+                    userID: user.uid,
+                }))
+            } else {
+                setUsername('')
+            }
+        });
+    }, [dispatch, username])
+
     return (
         <>
-        {/* <ToastContainer/> */}
             <header>
                 <div className={styles.header}>
                     <Logo />
@@ -83,21 +110,32 @@ function Header() {
                                 <NavLink to='/contactus' className={ActiveLink}>
                                     Contact Us
                                 </NavLink>
-                                <NavLink to='/login' className={ActiveLink}>
-                                    Login
-                                </NavLink>
-                                <NavLink to='/register' className={ActiveLink}>
-                                    Register
-                                </NavLink>
-                                <NavLink to='/myorders' className={ActiveLink}>
-                                    My Orders
-                                </NavLink>
-                                <NavLink to='/login' className={ActiveLink} onClick={logoutUser}>
-                                    Logout
-                                </NavLink>
-                            </span>
+                                <ShowOnLogout>
+                                    <NavLink to='/login' className={ActiveLink}>
+                                        Login
+                                    </NavLink>
+                                    <NavLink to='/register' className={ActiveLink}>
+                                        Register
+                                    </NavLink>
+                                </ShowOnLogout>
+                                <ShowOnLogin>
+                                    <NavLink to='/myorders' className={ActiveLink}>
+                                        My Orders
+                                    </NavLink>
+                                    <a href='#'>
+                                        <FaUserCircle />
+                                        Hi, {username}
+                                    </a>
 
-                            <Cart />
+                                    <NavLink to='/login' className={ActiveLink} onClick={logoutUser}>
+                                        Logout
+                                    </NavLink>
+                                </ShowOnLogin>
+                            </span>
+                            <ShowOnLogin>
+                                <Cart />
+                            </ShowOnLogin>
+
                         </div>
                     </nav>
                     <div className={styles["menu-icon"]}>
