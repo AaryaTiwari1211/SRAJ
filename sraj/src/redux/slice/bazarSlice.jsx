@@ -18,14 +18,14 @@ export const bazarSlice = createSlice({
         incrementQuantity: (state, action) => {
             const item = state.productData.find((item) => item._id === action.payload._id);
             if (item && item.quantity<20) {
-                item.quantity += action.payload.quantity;
+                item.quantity += 1;
             } 
         },
         decrementQuantity: (state, action) => {
             const item = state.productData.find((item) => item._id === action.payload._id);
             if (item && item.quantity>1) {
-                item.quantity -= action.payload.quantity;
-            } 
+                item.quantity -= 1;
+            }
         },
         addToCart: (state, action) => {
             const item = state.productData.find((item) => item._id === action.payload._id);

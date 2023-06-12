@@ -8,12 +8,6 @@ import { HiOutlineArrowLeft } from 'react-icons/hi'
 
 const CartDisplay = ({ productData }) => {
     const dispatch = useDispatch();
-    const handleMinus = () => {
-        // handleMinus logic here
-    };
-    const handlePlus = () => {
-        // handlePlus logic here
-    };
     return productData.map((item) => (
         <>
             <div key={item._id} className='flex items-center justify-between gap-6 mt-6'>
@@ -34,24 +28,24 @@ const CartDisplay = ({ productData }) => {
 
                         <button className='border h-5 font-normal text-lg flex items-center justify-center px-2 py-2 
                             hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active-bg-black' onClick={() => dispatch(decrementQuantity({
-                            _id: product._id,
-                            title: product.title,
-                            image: product.image,
-                            price: product.price,
+                            _id: item._id,
+                            title: item.title,
+                            image: item.image,
+                            price: item.price,
                             quantity: item.quantity,
-                            description: product.description,
+                            description: item.description,
                         }))}>-</button>
 
-                        <span>1</span>
+                        <span>{item.quantity}</span>
 
                         <button className='border h-5 font-normal text-lg flex items-center justify-center px-2 py-2 
                             hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active-bg-black' onClick={() => dispatch(incrementQuantity({
-                            _id: product._id,
-                            title: product.title,
-                            image: product.image,
-                            price: product.price,
+                            _id: item._id,
+                            title: item.title,
+                            image: item.image,
+                            price: item.price,
                             quantity: item.quantity,
-                            description: product.description,
+                            description: item.description,
                         }))}>+</button>
                     </div>
                 </div>

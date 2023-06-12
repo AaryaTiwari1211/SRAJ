@@ -52,7 +52,7 @@ function ProductCard({ product }) {
                             price: product.price,
                             quantity: 1,
                             description: product.description,
-                        })) & toast.success(`${product.title} added to cart`)}>add to cart{" "}<span><BsArrowRight size={7} /></span></p>
+                        })) & toast.success(`${details.title} added`)}>add to cart{" "}<span><BsArrowRight size={7} /></span></p>
                     </div>
                 </div>
                 <div>
