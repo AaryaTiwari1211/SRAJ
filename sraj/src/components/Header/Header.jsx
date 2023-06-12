@@ -9,22 +9,33 @@ import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ShowOnLogin, ShowOnLogout } from '../LinkHide/LinkHide'
+
+import { useMediaQuery } from '@mui/material'
+
+
+import { bazarSlice } from '../../redux/slice/bazarSlice'
 import { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } from '../../redux/slice/authSlice'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
+    const media = useMediaQuery('(max-width:860px)')
     return (
         <span className={styles.cart}>
             <NavLink to='/cart' className={ActiveLink}>
-                Cart
+                {!media && 
+                (
+                    <>
+                        Cart
+                    </>
+                )
+                }
                 <FaShoppingCart
                     size={20}
                 />
-                <p>0</p>
             </NavLink>
         </span>
     )
@@ -48,6 +59,8 @@ function Header() {
     const [menu, setMenu] = useState(false)
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
+    const productData = useSelector((state)=> state.bazar.productData)
+    console.log(productData)
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setMenu(!menu);
@@ -122,11 +135,9 @@ function Header() {
                                     <NavLink to='/myorders' className={ActiveLink}>
                                         My Orders
                                     </NavLink>
-                                    <a href='#'>
-                                        <FaUserCircle />
+                                    <NavLink to='#' className={ActiveLink}>
                                         Hi, {username}
-                                    </a>
-
+                                    </NavLink>
                                     <NavLink to='/login' className={ActiveLink} onClick={logoutUser}>
                                         Logout
                                     </NavLink>

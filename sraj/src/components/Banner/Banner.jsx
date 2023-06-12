@@ -46,7 +46,10 @@ function Banner() {
                         alt='Image 4'
                     />
                 </div>
-                <div className='absolute left-0 right-0 flex gap-12 mx-auto w-fit bottom-44 '>
+                <div className='absolute left-0 right-0 flex justify-between mx-auto w-100 ' style={{
+                    bottom:'400px',
+                    marginRight:'15px',
+                }}>
                     <div className='h-12 w-14 border-[1px] border-gray-700 flex items-center justify-center hover:cursor-pointer hover:bg-gray-700 
                     hover:text-white active:bg-gray-900 duration-300' onClick={prevSlide}>
                         <HiArrowLeft size={20}/>
