@@ -39,7 +39,7 @@ function ProductCard({ product }) {
                         </h2>
                     </div>
                     <div className='flex gap-2 relative overflow-hidden w-28'>
-                        <div className='flex gap-2 transform group-hover:translate-x-32 transition-transform duration-500 -text-sm relative w-28 justify-end'>
+                        <div className='flex gap-2 transform group-hover:translate-x-32 transition-transform duration-500 -text-sm relative w-28 justify-end px-2 mx-2'>
                             <p className="line-through text-[12px] text-gray-500">${product.oldPrice}</p>
                             <p className='font-semibold text-[12px]'>${product.price}</p>
                         </div>
@@ -52,7 +52,7 @@ function ProductCard({ product }) {
                             price: product.price,
                             quantity: 1,
                             description: product.description,
-                        })) & toast.success(`${details.title} added`)}>add to cart{" "}<span><BsArrowRight size={7} /></span></p>
+                        })) & toast.success(`${product.title} added`)}>add to cart{" "}<span><BsArrowRight size={7} /></span></p>
                     </div>
                 </div>
                 <div>

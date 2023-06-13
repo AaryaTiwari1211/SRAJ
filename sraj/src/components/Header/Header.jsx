@@ -26,12 +26,12 @@ const Cart = () => {
     return (
         <span className={styles.cart}>
             <NavLink to='/cart' className={ActiveLink}>
-                {!media && 
-                (
-                    <>
-                        Cart
-                    </>
-                )
+                {!media &&
+                    (
+                        <>
+                            Cart
+                        </>
+                    )
                 }
                 <FaShoppingCart
                     size={20}
@@ -59,8 +59,7 @@ function Header() {
     const [menu, setMenu] = useState(false)
     const [username, setUsername] = useState('')
     const navigate = useNavigate()
-    const productData = useSelector((state)=> state.bazar.productData)
-    console.log(productData)
+    const productData = useSelector((state) => state.bazar.productData)
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setMenu(!menu);
@@ -81,12 +80,14 @@ function Header() {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                if (user.displayName == null) {
+                if (user.displayName === null) {
                     const mail = user.email.substring(0, user.email.indexOf("@"))
                     const userName = mail.charAt(0).toUpperCase() + mail.slice(1)
                     setUsername(userName)
                 }
-                setUsername(user.displayName)
+                else {
+                    setUsername(user.displayName)
+                }
                 dispatch(SET_ACTIVE_USER({
                     email: user.email,
                     username: user.displayName ? user.displayName : username,
@@ -135,7 +136,7 @@ function Header() {
                                     <NavLink to='/myorders' className={ActiveLink}>
                                         My Orders
                                     </NavLink>
-                                    <NavLink to='#' className={ActiveLink}>
+                                    <NavLink to='#'>
                                         Hi, {username}
                                     </NavLink>
                                     <NavLink to='/login' className={ActiveLink} onClick={logoutUser}>

@@ -16,7 +16,7 @@ function Products({ products }) {
                     sequi animi fugit minus officia repudiandae.
                 </p>
             </div>
-            <div className='grid max-w-screen-xl grid-cols-4 gap-10 mx-auto py-auto'>
+            <div className='grid xs-grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 m-5 py-auto'>
                 {
                     products.map((item)=>(
                         <ProductCard key={item.id} product = {item} />
