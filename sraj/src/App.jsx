@@ -46,7 +46,14 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home products={products} />} />
+          <Route path="/products" element={<Home products={products} />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/products/sarees" element={<Product />} />
+          <Route path="/products/lehengas" element={<Product />} />
+          <Route path="/products/nightwear" element={<Product />} />
+          <Route path="/products/jewellery" element={<Product />} />
+          <Route path="/products/bedsheets" element={<Product />} />
+          <Route path="/products/suits" element={<Product />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />
