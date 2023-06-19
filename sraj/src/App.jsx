@@ -23,10 +23,14 @@ import Bedsheets from './pages/products/Bedsheets'
 import NightWear from './pages/products/NightWear'
 import Navbar2 from './components/Navbar2/Navbar2';
 
+import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { db } from './firebase/firebase';
+
 import axios from 'axios'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 async function fetchProducts() {
   try {
@@ -40,8 +44,35 @@ async function fetchProducts() {
 }
 
 function App() {
+  
+  const [products2, setProducts2] = useState([]);
   const [products, setProducts] = useState([]);
+  const productCollection = collection(db, "Products")
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const fetchedProducts = await fetchProducts();
+  //     if (fetchedProducts) {
+  //       setProducts(fetchedProducts);
+  //     }
+  //   }
+  //   fetchData();
+  // },[])
+  const getProducts = async () => {
+    try {
+      const data = await getDocs(productCollection)
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+      console.log(filteredData)
+      setProducts2(filteredData)
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
   useEffect(() => {
+    getProducts();
     async function fetchData() {
       const fetchedProducts = await fetchProducts();
       if (fetchedProducts) {
@@ -49,12 +80,12 @@ function App() {
       }
     }
     fetchData();
-  },[])
+  }, [])
   return (
     <BrowserRouter>
       <ToastContainer />
       <Header />
-      <Navbar2/>
+      <Navbar2 />
       <div className="App">
         <Routes>
           <Route path="/" element={<Home products={products} />} />

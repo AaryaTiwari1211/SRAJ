@@ -36,7 +36,6 @@ function Register() {
     return (
         <>
             {loading && <Loader /> }
-                {/* <ToastContainer /> */}
             <section className={`container ${styles.auth}`}>
                 <Card>
                     <div className={`${styles.form}`}>
