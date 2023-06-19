@@ -3,6 +3,8 @@ import { BsArrowRight } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/slice/bazarSlice'
+import saree1 from '../../assets/saree1.jpg'
+import saree2 from '../../assets/saree2.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,23 +25,23 @@ function ProductCard({ product }) {
         })
     }
     return (
-        <div className="group relative">
+        <div className="relative group">
             <div onClick={handleDetails} className="w-full h-[500px] overflow-hidden cursor-pointer">
                 <img
-                    src={product.image}
+                    src={saree2}
                     alt="Image"
-                    className="object-cover w-full h-full group-hover:scale-110 duration-500"
+                    className="object-cover w-full h-full duration-500 group-hover:scale-110"
                 />
             </div>
             <div className='w-full border-[1px] px-2 py-4'>
                 <div className='flex justify-between align-center'>
                     <div>
-                        <h2 className='font-titleFont text-2xl font-bold'>
+                        <h2 className='text-2xl font-bold font-titleFont'>
                             {product.title.substring(0, 15)}
                         </h2>
                     </div>
-                    <div className='flex gap-2 relative overflow-hidden w-28'>
-                        <div className='flex gap-2 transform group-hover:translate-x-32 transition-transform duration-500 -text-sm relative w-28 justify-end px-2 mx-2'>
+                    <div className='relative flex gap-2 overflow-hidden w-28'>
+                        <div className='relative flex justify-end gap-2 px-2 mx-2 transition-transform duration-500 transform group-hover:translate-x-32 -text-sm w-28'>
                             <p className="line-through text-[12px] text-gray-500">${product.oldPrice}</p>
                             <p className='font-semibold text-[12px]'>${product.price}</p>
                         </div>
@@ -58,10 +60,10 @@ function ProductCard({ product }) {
                 <div>
                     <p>{product.category}</p>
                 </div>
-                <div className='absolute top-4 right-0'>
+                <div className='absolute right-0 top-4'>
                     {product.isNew &&
                         <>
-                            <p className='bg-black text-white font-semibold font-titleFont px-6 py-1'>
+                            <p className='px-6 py-1 font-semibold text-white bg-[#dc747d] font-titleFont'>
                                 For Sale
                             </p>
                         </>

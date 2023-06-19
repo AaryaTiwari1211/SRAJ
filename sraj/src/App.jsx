@@ -13,7 +13,18 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer'
 import ProductData from './data/api';
 import Product from './components/Products/Product'
+import Sarees from './pages/products/Sarees'
+import Lehengas from './pages/products/Lehengas'
+import Kurtas from './pages/products/Kurtas'
+import Suits from './pages/products/Suits'
+import Linen from './pages/products/Linen'
+import Jewellery from './pages/products/Jewellery'
+import Bedsheets from './pages/products/Bedsheets'
+import NightWear from './pages/products/NightWear'
+import Navbar2 from './components/Navbar2/Navbar2';
+
 import axios from 'axios'
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,17 +54,18 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <Header />
+      <Navbar2/>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home products={products} />} />
           <Route path="/products" element={<Home products={products} />} />
           <Route path="/product/:id" element={<Product />} />
-          <Route path="/products/sarees" element={<Product />} />
-          <Route path="/products/lehengas" element={<Product />} />
-          <Route path="/products/nightwear" element={<Product />} />
-          <Route path="/products/jewellery" element={<Product />} />
-          <Route path="/products/bedsheets" element={<Product />} />
-          <Route path="/products/suits" element={<Product />} />
+          <Route path="/products/sarees" element={<Sarees />} />
+          <Route path="/products/lehengas" element={<Lehengas />} />
+          <Route path="/products/nightwear" element={<NightWear />} />
+          <Route path="/products/jewellery" element={<Jewellery />} />
+          <Route path="/products/bedsheets" element={<Bedsheets />} />
+          <Route path="/products/suits" element={<Suits />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />

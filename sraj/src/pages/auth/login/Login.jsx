@@ -6,7 +6,7 @@ import { FaGoogle } from 'react-icons/fa'
 import Card from '../../../components/Card/Card'
 import Loader from '../../../components/Loader/Loader'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../../firebase/firebase'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
