@@ -10,41 +10,41 @@ const CartDisplay = ({ productData }) => {
     const dispatch = useDispatch();
     return productData.map((item) => (
         <>
-            <div key={item._id} className='flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 mt-6'>
+            <div key={item._id} className='flex flex-col items-center justify-center gap-6 mt-6 lg:flex-row lg:justify-between'>
                 <div className='flex items-center gap-2'>
-                    <MdOutlineClose onClick={() => dispatch(deleteItem(item._id)) & toast.error(`${item.title} was deleted`)} className='text-xl text-gray-600 hover:text-red-600 cursor-pointer duration-300' />
+                    <MdOutlineClose onClick={() => dispatch(deleteItem(item.id)) & toast.error(`${item.name} was deleted`)} className='text-xl text-gray-600 duration-300 cursor-pointer hover:text-red-600' />
                     <img
                         src={item.image}
                         className='min-w-[100px] h-[100px] object-cover'
                         alt="productImg"
                     />
                 </div>
-                <div className='flex flex-col lg:flex-row text-center gap-6 items-center'>
-                    <h2 className='w-[300px] text-[15px]'>{item.title}</h2>
+                <div className='flex flex-col items-center gap-6 text-center lg:flex-row'>
+                    <h2 className='w-[300px] text-[15px]'>{item.name}</h2>
                     <p className='font-bold'>${item.price}</p>
-                    <div className=' flex items-center m-3 justify-between text-gray-500 gap-4 border p-3'>
+                    <div className='flex items-center justify-between gap-4 p-3 m-3 text-gray-500 border '>
                         <p className='text-sm'>Quantity</p>
                         <div className='flex items-center gap-4 text-sm font-semibold'>
-                            <button className='border h-5 font-normal text-lg flex items-center justify-center px-2 py-2 
-                            hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active-bg-black' onClick={() => dispatch(decrementQuantity({
-                                _id: item._id,
-                                title: item.title,
+                            <button className='flex items-center justify-center h-5 px-2 py-2 text-lg font-normal duration-300 border cursor-pointer hover:bg-gray-700 hover:text-white active-bg-black' 
+                            onClick={() => dispatch(decrementQuantity({
+                                id: item.id,
+                                name: item.title,
                                 image: item.image,
-                                price: item.price,
+                                price: item.New_Price,
                                 quantity: item.quantity,
-                                description: item.description,
+                                description: item.Desc,
                             }))}>-</button>
 
                             <span>{item.quantity}</span>
 
-                            <button className='border h-5 font-normal text-lg flex items-center justify-center px-2 py-2 
-                            hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active-bg-black' onClick={() => dispatch(incrementQuantity({
-                                _id: item._id,
-                                title: item.title,
+                            <button className='flex items-center justify-center h-5 px-2 py-2 text-lg font-normal duration-300 border cursor-pointer hover:bg-gray-700 hover:text-white active-bg-black' 
+                            onClick={() => dispatch(incrementQuantity({
+                                id: item.id,
+                                name: item.title,
                                 image: item.image,
-                                price: item.price,
+                                price: item.New_Price,
                                 quantity: item.quantity,
-                                description: item.description,
+                                description: item.Desc,
                             }))}>+</button>
                         </div>
                     </div>
@@ -68,12 +68,12 @@ const CartItem = () => {
                 ) : (
                     <>
                         <CartDisplay productData={productData} />
-                        <button onClick={() => dispatch(resetCart()) & toast.error("Your Cart is now empty")} className='bg-red-500 text-white m-8 py-1 px-6 hover:bg-red-800 '>Reset Cart</button>
+                        <button onClick={() => dispatch(resetCart()) & toast.error("Your Cart is now empty")} className='px-6 py-1 m-8 text-white bg-red-500 hover:bg-red-800 '>Reset Cart</button>
                     </>
                 )}
             </div>
             <Link to="/">
-                <button className="m-8 flex items-center gap-1 text-gray-400 hover:text-black duration:300">
+                <button className="flex items-center gap-1 m-8 text-gray-400 hover:text-black duration:300">
                     <span>
                         <HiOutlineArrowLeft />
                     </span>

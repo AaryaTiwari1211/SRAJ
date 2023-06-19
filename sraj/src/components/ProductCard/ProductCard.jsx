@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { BsArrowRight } from 'react-icons/bs'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { addToCart } from '../../redux/slice/bazarSlice'
-import saree1 from '../../assets/saree1.jpg'
-import saree2 from '../../assets/saree2.jpg'
-
+import React from 'react';
+import { BsArrowRight } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/slice/bazarSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ProductCard({ product }) {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const _id = product.title
-    // const idString = (_id) => {
-    //     return String(_id).toLowerCase().split(" ").join("");
-    // }
-    // const rootId = idString(_id)
-    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const handleDetails = () => {
         navigate(`/product/${product.id}`, {
             state: {
                 item: product
             }
-        })
-    }
+        });
+    };
+
     return (
         <div className="relative group">
             <div onClick={handleDetails} className="w-full h-[500px] overflow-hidden cursor-pointer">
                 <img
-                    src={product.Images[0]}
+                    src={product.Images && product.Images.length > 0 ? product.Images[0] : ''}
                     alt="Image"
                     className="object-cover w-full h-full duration-500 group-hover:scale-110"
                 />
@@ -51,7 +44,7 @@ function ProductCard({ product }) {
                         cursor-pointer duration-500' onClick={() => dispatch(addToCart({
                             id: product.id,
                             name: product.Name,
-                            image: product.Image[0],
+                            image: product.Images && product.Images.length > 0 ? product.Images[0] : '',
                             price: product.New_Price,
                             quantity: 1,
                             description: product.Desc,
@@ -72,7 +65,7 @@ function ProductCard({ product }) {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default ProductCard
+export default ProductCard;
