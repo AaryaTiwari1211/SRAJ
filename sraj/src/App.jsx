@@ -88,8 +88,8 @@ function App() {
       <Navbar2 />
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home products={products} />} />
-          <Route path="/products" element={<Home products={products} />} />
+          <Route path="/" element={<Home products={products2} />} />
+          <Route path="/products" element={<Home products={products2} />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/products/sarees" element={<Sarees />} />
           <Route path="/products/lehengas" element={<Lehengas />} />
