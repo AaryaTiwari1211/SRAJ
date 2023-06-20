@@ -6,8 +6,6 @@ import { addToCart } from '../../redux/slice/bazarSlice'
 
 import saree1 from '../../assets/saree1.jpg'
 import saree2 from '../../assets/saree2.jpg'
-import slider1 from '../../assets/slider1.jpg'
-import slider2 from '../../assets/slider2.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,8 +33,8 @@ const Product = () => {
 
     return (
         <div>
-            <div className='flex items-center max-w-screen-xl gap-10 mx-auto my-10'>
-                <div className='flex flex-col gap-10'>
+            <div className='flex flex-col items-center max-w-screen-xl gap-10 mx-auto my-10 md:flex-row'>
+                <div className='flex gap-10 md:flex-col'>
                     {
                         details &&
                         details.Images &&
@@ -44,7 +42,7 @@ const Product = () => {
                             return (
                                 <div className='cursor-pointer' key={index}>
                                     <img
-                                        className='w-[150px] h-[150px]'
+                                        className='w-full h-[100px] object-fit'
                                         onClick={() => setCurrentImg(index)}
                                         src={image}
                                         alt={details.Name}
@@ -55,7 +53,7 @@ const Product = () => {
                     }
                 </div>
                 <div className='relative w-2/5'>
-                    <img src={details && details.Images && details.Images[currentImg]} className='w-full h-[550px] object-cover' />
+                    <img src={details && details.Images && details.Images[currentImg]} className='w-full h-[550px] object-fit' />
                     <div className='absolute right-0 top-4'>
                         {details && (details.isNew &&
                             <>

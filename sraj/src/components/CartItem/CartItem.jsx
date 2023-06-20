@@ -15,7 +15,7 @@ const CartDisplay = ({ productData }) => {
                     <MdOutlineClose onClick={() => dispatch(deleteItem(item.id)) & toast.error(`${item.name} was deleted`)} className='text-xl text-gray-600 duration-300 cursor-pointer hover:text-red-600' />
                     <img
                         src={item.image}
-                        className='min-w-[100px] h-[100px] object-cover'
+                        className='min-w-[100px] h-[100px] object-fit'
                         alt="productImg"
                     />
                 </div>
@@ -28,8 +28,8 @@ const CartDisplay = ({ productData }) => {
                             <button className='flex items-center justify-center h-5 px-2 py-2 text-lg font-normal duration-300 border cursor-pointer hover:bg-gray-700 hover:text-white active-bg-black' 
                             onClick={() => dispatch(decrementQuantity({
                                 id: item.id,
-                                name: item.title,
-                                image: item.image,
+                                name: item.Name,
+                                image: item.Images[0],
                                 price: item.New_Price,
                                 quantity: item.quantity,
                                 description: item.Desc,
@@ -40,8 +40,8 @@ const CartDisplay = ({ productData }) => {
                             <button className='flex items-center justify-center h-5 px-2 py-2 text-lg font-normal duration-300 border cursor-pointer hover:bg-gray-700 hover:text-white active-bg-black' 
                             onClick={() => dispatch(incrementQuantity({
                                 id: item.id,
-                                name: item.title,
-                                image: item.image,
+                                name: item.Name,
+                                image: item.Images[0],
                                 price: item.New_Price,
                                 quantity: item.quantity,
                                 description: item.Desc,
