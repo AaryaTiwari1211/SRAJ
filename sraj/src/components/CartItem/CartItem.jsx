@@ -10,7 +10,7 @@ const CartDisplay = ({ productData }) => {
     const dispatch = useDispatch();
     return productData.map((item) => (
         <>
-            <div key={item._id} className='flex flex-col items-center justify-center gap-6 mt-6 lg:flex-row lg:justify-between'>
+            <div key={item.id} className='flex flex-col items-center justify-center gap-6 mt-6 lg:flex-row lg:justify-between'>
                 <div className='flex items-center gap-2'>
                     <MdOutlineClose onClick={() => dispatch(deleteItem(item.id)) & toast.error(`${item.name} was deleted`)} className='text-xl text-gray-600 duration-300 cursor-pointer hover:text-red-600' />
                     <img
@@ -29,7 +29,7 @@ const CartDisplay = ({ productData }) => {
                             onClick={() => dispatch(decrementQuantity({
                                 id: item.id,
                                 name: item.Name,
-                                image: item.Images[0],
+                                image: item.image,
                                 price: item.New_Price,
                                 quantity: item.quantity,
                                 description: item.Desc,
@@ -41,7 +41,7 @@ const CartDisplay = ({ productData }) => {
                             onClick={() => dispatch(incrementQuantity({
                                 id: item.id,
                                 name: item.Name,
-                                image: item.Images[0],
+                                image: item.image,
                                 price: item.New_Price,
                                 quantity: item.quantity,
                                 description: item.Desc,

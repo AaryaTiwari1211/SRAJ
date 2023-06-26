@@ -9,9 +9,12 @@ import AboutUs from './pages/aboutus/AboutUs'
 import Login from './pages/auth/login/Login';
 import Register from './pages/auth/register/Register';
 import ResetPassword from './pages/auth/reset/ResetPassword';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer'
-import ProductData from './data/api';
+import Footer2 from './components/Footer2/Footer2';
+import Navbar2 from './components/Navbar2/Navbar2';
+
 import Product from './components/Products/Product'
 import Sarees from './pages/products/Sarees'
 import Lehengas from './pages/products/Lehengas'
@@ -21,7 +24,6 @@ import Linen from './pages/products/Linen'
 import Jewellery from './pages/products/Jewellery'
 import Bedsheets from './pages/products/Bedsheets'
 import NightWear from './pages/products/NightWear'
-import Navbar2 from './components/Navbar2/Navbar2';
 
 import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from './firebase/firebase';
@@ -48,15 +50,6 @@ function App() {
   const [products2, setProducts2] = useState([]);
   const [products, setProducts] = useState([]);
   const productCollection = collection(db, "Products")
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const fetchedProducts = await fetchProducts();
-  //     if (fetchedProducts) {
-  //       setProducts(fetchedProducts);
-  //     }
-  //   }
-  //   fetchData();
-  // },[])
   const getProducts = async () => {
     try {
       const data = await getDocs(productCollection)

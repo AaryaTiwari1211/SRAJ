@@ -4,12 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import CarouselComp from '../../components/Carousel/Carousel';
 import 'react-toastify/dist/ReactToastify.css';
 import Products from '../../components/Products/Products';
+import HomeExtras from '../../components/Extra/HomeExtras';
 
-function Home({products}) {
+function Home({ products }) {
     return (
         <>
-            {/* <Banner /> */}
             <CarouselComp />
+            <HomeExtras title='LATEST TRENDS' subtitle='New launches every day, styles that promise to capture your heart' />
             <Products products={products} />
         </>
     )

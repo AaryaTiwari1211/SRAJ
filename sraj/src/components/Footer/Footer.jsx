@@ -10,55 +10,34 @@ function Footer() {
 
                 <address>
                     B-1004 Neelsidhi Atlantis Sector 19-A Nerul (East) Navi Mumbai Maharashtra 400706<br/>
-                        <a className="footer__btn" href="mailto:example@gmail.com">Email Us</a>
+                        <a className="footer__btn" href="aaryamarve@gmail.com">Email Us</a>
                 </address>
             </div>
 
             <ul className="footer__nav">
                 <li className="nav__item">
                     <h2 className="nav__title">Apparel</h2>
-
                     <ul className="nav__ul">
                         <li>
-                            <a href="#">Sarees</a>
+                            <a href="/sarees">Sarees</a>
                         </li>
-
                         <li>
-                            <a href="#">Kurtas</a>
+                            <a href="/kurtas">Kurtas</a>
                         </li>
-
                         <li>
-                            <a href="#">Nightwear</a>
+                            <a href="/nightwear">Nightwear</a>
                         </li>
-                    </ul>
-                </li>
-
-                <li className="nav__item">
-                    <h2 className="nav__title">Wedding</h2>
-
-                    <ul className="nav__ul">
                         <li>
-                            <a href="#">Dresses</a>
+                            <a href="/bedsheets">Bedsheets</a>
                         </li>
-
                         <li>
-                            <a href="#">Lehengas</a>
+                            <a href="/lehengas">Lehengas</a>
                         </li>
-
                         <li>
-                            <a href="#">Dresses</a>
+                            <a href="/jewellery">Jewellery</a>
                         </li>
-
                         <li>
-                            <a href="#">Automation</a>
-                        </li>
-
-                        <li>
-                            <a href="#">Artificial Intelligence</a>
-                        </li>
-
-                        <li>
-                            <a href="#">IoT</a>
+                            <a href="/suits">Suits</a>
                         </li>
                     </ul>
                 </li>
