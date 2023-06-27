@@ -102,7 +102,9 @@ const Product = () => {
                                 price: details.New_Price,
                                 quantity: counter,
                                 description: details.Desc,
-                            })) & toast.success(`${details.Name} added to cart`)}>Add to Cart</button>
+                            })) & toast.success(`${details.Name} added to cart`)}>
+                                Add to Cart
+                            </button>
                         </div>
                         <p className='text-base text-gray-500'>Category: <span className='font-medium capitalize'> {details.Category} </span></p>
                     </div>

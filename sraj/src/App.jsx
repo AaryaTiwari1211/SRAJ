@@ -32,6 +32,7 @@ import axios from 'axios'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Product2 from './components/Product2/Product2';
 
 
 async function fetchProducts() {
@@ -83,7 +84,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home products={products2} />} />
           <Route path="/products" element={<Home products={products2} />} />
-          <Route path="/product/:id" element={<Product />} />
+          <Route path="/product/:id" element={<Product2 />} />
           <Route path="/products/sarees" element={<Sarees />} />
           <Route path="/products/lehengas" element={<Lehengas />} />
           <Route path="/products/nightwear" element={<NightWear />} />
