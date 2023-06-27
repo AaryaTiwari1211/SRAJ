@@ -28,6 +28,8 @@ import NightWear from './pages/products/NightWear'
 import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from './firebase/firebase';
 
+import { useMediaQuery } from '@mui/material';
+
 import axios from 'axios'
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,10 +49,11 @@ async function fetchProducts() {
 }
 
 function App() {
-  
+
   const [products2, setProducts2] = useState([]);
   const [products, setProducts] = useState([]);
   const productCollection = collection(db, "Products")
+  const md = useMediaQuery('(min-width:800px)')
   const getProducts = async () => {
     try {
       const data = await getDocs(productCollection)
@@ -79,7 +82,9 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <Header />
-      <Navbar2 />
+      {
+        md && <Navbar2 />
+      }
       <div className="App">
         <Routes>
           <Route path="/" element={<Home products={products2} />} />

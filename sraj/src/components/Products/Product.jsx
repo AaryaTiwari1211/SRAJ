@@ -4,8 +4,6 @@ import { MdOutlineStar } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/slice/bazarSlice'
 
-import saree1 from '../../assets/saree1.jpg'
-import saree2 from '../../assets/saree2.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
