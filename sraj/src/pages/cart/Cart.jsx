@@ -44,7 +44,6 @@ function Cart() {
 
     return (
         <div>
-            <img src={cartBanner} className='object-cover w-full h-60' alt='cartBanner' />
             <div className='flex flex-col items-center py-20 m-5 w-100 lg:flex-row lg:items-start lg:justify-center'>
                 <CartItem productData={productData} updateTotalAmt={updateTotalAmt} />
                 <div className='max-w-[400px] bg-[#fafafa] py-6 px-4'>

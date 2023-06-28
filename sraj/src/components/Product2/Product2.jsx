@@ -295,7 +295,7 @@ const Product2 = ({ item }) => {
                             width='100px'
                             click={() => dispatch(addToCart({
                                 id: details.id,
-                                title: details.Name,
+                                name: details.Name,
                                 image: details.Images[0],
                                 price: details.New_Price,
                                 quantity: counter,
