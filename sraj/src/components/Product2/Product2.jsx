@@ -16,6 +16,7 @@ import StarIcon from '@mui/icons-material/Star';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import DescriptionSection from '../Description/DescriptionSection'
 
 const SizeButton = ({ text, disabled }) => {
     return (
@@ -124,7 +125,7 @@ const Product2 = ({ item }) => {
                                         key={index}
                                     >
                                         <img
-                                            className='w-[150px] h-[150px]'
+                                            className={`${md ? "max-w-[150px] h-[150px]" : "w-[150px] h-[150px]"}`}  //w-[150px] h-[150px]
                                             onClick={() => setCurrentImg(index)}
                                             src={image}
                                             alt={details.Name}
@@ -141,7 +142,7 @@ const Product2 = ({ item }) => {
                         }}
                     >
                         <img src={details && details.Images && details.Images[currentImg]}
-                            className={`${md ? 'max-w-[600px]' : 'w-[100%]'} ${md ? 'h-[100vh]' : 'h-[70vh]'}`}
+                            className={`${md ? 'min-w-[600px]' : 'w-[100%]'} ${md ? 'h-[100vh]' : 'h-[70vh]'}`}
                         />
                         <Box sx={{
                             position: 'absolute',
@@ -223,20 +224,6 @@ const Product2 = ({ item }) => {
                             >
                                 inclusive of all taxes
                             </Typography>
-                        </Box>
-                        <Box sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px',
-                        }}>
-                            <Box sx={{ display: 'flex', gap: '5px' }}>
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                                <StarIcon />
-                            </Box>
-                            <Typography>1 Customer Review</Typography>
                         </Box>
                         <SizeOptions />
                         <Box>
@@ -325,18 +312,13 @@ const Product2 = ({ item }) => {
                                 color: 'var(--light-pink)'
                             }}>{details.Category}</span>
                         </Typography>
-                        <Box
-                            sx={{
-                                display: 'flex'
-                            }}
-                        >
-                            <Box>
-
-                            </Box>
-                        </Box>
                     </Box>
+                    <Box height={20}/>
                     <Box>
                         <ProductFeatures />
+                    </Box>
+                    <Box>
+                        <DescriptionSection/>
                     </Box>
                 </Box>
             </Box>
