@@ -6,18 +6,21 @@ import { useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/slice/bazarSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import COD from '../../assets/cash-on-delivery.svg'
 
 import CustomButton from '../CustomButton/CustomButton'
+
+import ProductFeatures from '../ProductFeatures/ProductFeatures'
 
 import StarIcon from '@mui/icons-material/Star';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
-const SizeButton = ({ text }) => {
+const SizeButton = ({ text, disabled }) => {
     return (
         <Button
+            disabled={disabled}
             variant="outlined"
             sx={{
                 borderRadius: '50%',
@@ -48,11 +51,11 @@ const SizeOptions = () => {
                 gap: '5px',
             }}
         >
-            <SizeButton text="XS" />
-            <SizeButton text="S" />
-            <SizeButton text="M" />
-            <SizeButton text="L" />
-            <SizeButton text="XL" />
+            <SizeButton disabled={false} text="XS" />
+            <SizeButton disabled={false} text="S" />
+            <SizeButton disabled={false} text="M" />
+            <SizeButton disabled={false} text="L" />
+            <SizeButton disabled={false} text="XL" />
         </Box>
     )
 }
@@ -121,7 +124,7 @@ const Product2 = ({ item }) => {
                                         key={index}
                                     >
                                         <img
-                                            className='max-w-full h-[150px]'
+                                            className='w-[150px] h-[150px]'
                                             onClick={() => setCurrentImg(index)}
                                             src={image}
                                             alt={details.Name}
@@ -134,11 +137,11 @@ const Product2 = ({ item }) => {
                     <Box
                         sx={{
                             position: 'relative',
-                            height:'100%',
+                            height: '100%',
                         }}
                     >
                         <img src={details && details.Images && details.Images[currentImg]}
-                            className={`${md ? 'w-full' : 'w-[100%]'} ${md ? 'h-[100vh]' : 'h-[70vh]'}`}
+                            className={`${md ? 'max-w-[600px]' : 'w-[100%]'} ${md ? 'h-[100vh]' : 'h-[70vh]'}`}
                         />
                         <Box sx={{
                             position: 'absolute',
@@ -170,6 +173,7 @@ const Product2 = ({ item }) => {
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
+                            alignItems: md ? 'flex-start' : 'center',
                             gap: '30px',
                         }}
                     >
@@ -191,21 +195,33 @@ const Product2 = ({ item }) => {
                         >
                             <Typography
                                 sx={{
-                                    fontSize: '16px',
+                                    fontSize: '20px',
                                     fontWeight: '600',
                                     textDecoration: 'line-through',
-                                    color: 'gray'
+                                    color: 'gray',
+                                    fontFamily: 'Poppins'
                                 }}
                             >
                                 <CurrencyRupeeIcon fontSize='16px' />
                                 {details.Old_Price}
                             </Typography>
                             <Typography sx={{
-                                fontSize: '16px',
-                                fontWeight: '600'
+                                fontSize: '24px',
+                                fontWeight: '600',
+                                fontFamily: 'Poppins'
                             }}
                             >
                                 <CurrencyRupeeIcon fontSize='16px' />{details.New_Price}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: 'var(--light-pink)',
+                                    fontWeight: '600',
+                                    fontSize: '12px',
+                                    fontFamily: 'Poppins'
+                                }}
+                            >
+                                inclusive of all taxes
                             </Typography>
                         </Box>
                         <Box sx={{
@@ -222,20 +238,11 @@ const Product2 = ({ item }) => {
                             </Box>
                             <Typography>1 Customer Review</Typography>
                         </Box>
-                        <Typography
-                            sx={{
-                                color: 'var(--light-pink)',
-                                fontWeight: '600',
-                                fontSize: '15px',
-                                fontFamily: 'Poppins'
-                            }}
-                        >
-                            inclusive of all taxes..
-                        </Typography>
                         <SizeOptions />
                         <Box>
                             <Box
                                 sx={{
+                                    width: '100%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
@@ -308,11 +315,30 @@ const Product2 = ({ item }) => {
                                 description: details.Desc,
                             })) & toast.success(`${details.Name} added to cart`)}
                         />
-                        <p className='text-base text-gray-500'>Category: <span className='font-medium capitalize'> {details.Category} </span></p>
+                        <Typography
+                            sx={{
+                                fontSize: '15px',
+                                textTransform: 'uppercase'
+                            }}
+                        >
+                            Category : <span style={{
+                                color: 'var(--light-pink)'
+                            }}>{details.Category}</span>
+                        </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex'
+                            }}
+                        >
+                            <Box>
+
+                            </Box>
+                        </Box>
                     </Box>
-                    <Box></Box>
+                    <Box>
+                        <ProductFeatures />
+                    </Box>
                 </Box>
-                {/* <Box width={30} /> */}
             </Box>
             <Box height={30} />
         </>

@@ -12,7 +12,6 @@ import ResetPassword from './pages/auth/reset/ResetPassword';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer'
-import Footer2 from './components/Footer2/Footer2';
 import Navbar2 from './components/Navbar2/Navbar2';
 
 import Product from './components/Products/Product'
@@ -35,6 +34,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Product2 from './components/Product2/Product2';
+import Footer2 from './components/Footer2/Footer2';
 
 
 async function fetchProducts() {
@@ -105,7 +105,7 @@ function App() {
           <Route path="/resetpassword" element={<ResetPassword />} />
         </Routes>
       </div>
-      <Footer />
+      <Footer2 />
     </BrowserRouter>
   )
 }

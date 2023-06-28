@@ -6,10 +6,14 @@ import { addToCart } from '../../redux/slice/bazarSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useMediaQuery } from '@mui/material';
+
 function ProductCard({ product }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const md = useMediaQuery("(min-width:1024px)")
+    
     const handleDetails = () => {
         navigate(`/product/${product.id}`, {
             state: {
@@ -19,12 +23,12 @@ function ProductCard({ product }) {
     };
 
     return (
-        <div className="relative group">
+        <div className={`relative group ${md ? 'w-full' : 'w-[100%] justify-center align-center'}`}>
             <div onClick={handleDetails} className="w-full h-[500px] overflow-hidden cursor-pointer">
                 <img
                     src={product.Images && product.Images.length > 0 ? product.Images[0] : ''}
                     alt="Image"
-                    className="object-cover w-full h-full duration-500 group-hover:scale-110"
+                    className="object-cover w-full h-full duration-500 hover:scale-110"
                 />
             </div>
             <div className='w-full border-[1px] px-2 py-4'>
