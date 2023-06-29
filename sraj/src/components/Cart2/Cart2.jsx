@@ -52,7 +52,7 @@ const Cart2 = () => {
                     width: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'flex-start',
+                    justifyContent: md ? 'flex-start' : 'center',
                     margin: '20px',
                 }}
             >
@@ -88,38 +88,41 @@ const Cart2 = () => {
                             }}
                         >Products</Typography>
                     </Box>
-                    <Box
-                        sx={{
-                            width: '50%',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                        }}
-                    >
-                        <Typography
+                    {
+                        md && (<Box
                             sx={{
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                fontWeight: '600',
-                                letterSpacing: '1px',
+                                width: '50%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
                             }}
-                        >Price</Typography>
-                        <Typography
-                            sx={{
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                fontWeight: '600',
-                                letterSpacing: '1px',
-                            }}
-                        >Quantity</Typography>
-                        <Typography
-                            sx={{
-                                fontSize: 16,
-                                fontFamily: 'Poppins',
-                                fontWeight: '600',
-                                letterSpacing: '1px',
-                            }}
-                        >Total Price</Typography>
-                    </Box>
+                        >
+                            <Typography
+                                sx={{
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: '600',
+                                    letterSpacing: '1px',
+                                }}
+                            >Price</Typography>
+                            <Typography
+                                sx={{
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: '600',
+                                    letterSpacing: '1px',
+                                }}
+                            >Quantity</Typography>
+                            <Typography
+                                sx={{
+                                    fontSize: 16,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: '600',
+                                    letterSpacing: '1px',
+                                }}
+                            >Total Price</Typography>
+                        </Box>) 
+                    }
+
                 </Box>
                 <Box height={20} />
                 <Box>
@@ -139,6 +142,8 @@ const Cart2 = () => {
                                 <Box
                                     sx={{
                                         display: 'flex',
+                                        flexDirection: md ? 'row' : 'column',
+                                        justifyContent:'center',
                                         alignItems: 'center',
                                         width: '50%',
                                         gap: '20px',
@@ -163,8 +168,10 @@ const Cart2 = () => {
                                     sx={{
                                         width: '50%',
                                         display: 'flex',
+                                        flexDirection: md ? 'row' : 'column',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
+                                        gap: md ? '0' : '20px',
                                     }}
                                 >
                                     <Typography

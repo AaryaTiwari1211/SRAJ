@@ -11,7 +11,6 @@ import Cart2 from '../../components/Cart2/Cart2';
 function Cart() {
     const productData = useSelector((state) => state.bazar.productData);
     const userInfo = useSelector((state) => state.auth);
-    console.log(userInfo);
     const [totalAmt, setTotalAmt] = useState('');
     const [payNow, setPayNow] = useState(false);
 
