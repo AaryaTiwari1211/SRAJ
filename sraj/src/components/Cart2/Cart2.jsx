@@ -8,6 +8,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useMediaQuery } from '@mui/material';
 import { IconButton } from '@mui/material';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { deleteItem, incrementQuantity, resetCart, decrementQuantity } from '../../redux/slice/bazarSlice'
 import { toast } from 'react-toastify'
 const Cart2 = () => {
@@ -77,6 +78,7 @@ const Cart2 = () => {
                     <Box
                         sx={{
                             width: '50%',
+                            textAlign: 'center',
                         }}
                     >
                         <Typography
@@ -120,7 +122,7 @@ const Cart2 = () => {
                                     letterSpacing: '1px',
                                 }}
                             >Total Price</Typography>
-                        </Box>) 
+                        </Box>)
                     }
 
                 </Box>
@@ -143,7 +145,6 @@ const Cart2 = () => {
                                     sx={{
                                         display: 'flex',
                                         flexDirection: md ? 'row' : 'column',
-                                        justifyContent:'center',
                                         alignItems: 'center',
                                         width: '50%',
                                         gap: '20px',
@@ -251,7 +252,18 @@ const Cart2 = () => {
                     }
                 </Box>
                 <Box>
-                    <Typography>Additional Comments</Typography>
+                    <Typography
+                        sx={{
+                            fontSize: 16,
+                            fontFamily: 'Poppins',
+                            fontWeight: '600',
+                            letterSpacing: '1px',
+                        }}
+                    >Additional Comments</Typography>
+                    <textarea placeholder='Enter additional comments for the seller' rows={5} cols={50} style={{
+                        borderRadius:'10px',
+                        padding:'5px'
+                    }}  />
                 </Box>
             </Box>
         </>

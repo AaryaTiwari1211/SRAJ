@@ -9,7 +9,7 @@ const CustomButton = ({ text, click }) => {
             onClick={click}
             sx={{
                 backgroundColor: 'var(--light-pink)',
-                width:'60%',
+                width:'50%',
                 color: 'white',
                 border: 'none',
                 borderRadius: '5px',

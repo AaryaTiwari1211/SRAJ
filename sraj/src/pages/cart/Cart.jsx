@@ -7,6 +7,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Cart2 from '../../components/Cart2/Cart2';
+import NewsLetter from '../../components/NewsLetter/NewsLetter';
 
 function Cart() {
     const productData = useSelector((state) => state.bazar.productData);
@@ -88,6 +89,7 @@ function Cart() {
                     )}
                 </div>
             </div>
+            <NewsLetter />
         </div>
     );
 }
