@@ -6,6 +6,7 @@ import CartItem from '../../components/CartItem/CartItem';
 import StripeCheckout from 'react-stripe-checkout';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Cart2 from '../../components/Cart2/Cart2';
 
 function Cart() {
     const productData = useSelector((state) => state.bazar.productData);
@@ -44,8 +45,9 @@ function Cart() {
 
     return (
         <div>
-            <div className='flex flex-col items-center py-20 m-5 w-100 lg:flex-row lg:items-start lg:justify-center'>
-                <CartItem productData={productData} updateTotalAmt={updateTotalAmt} />
+            <div className='flex flex-col items-center py-20 m-5 w-100 lg:flex-row lg:items-start lg:justify-between'>
+                {/* <CartItem productData={productData} updateTotalAmt={updateTotalAmt} /> */}
+                <CartItem />
                 <div className='max-w-[400px] bg-[#fafafa] py-6 px-4'>
                     <div className='flex flex-col justify-between gap-6 border-b-[1px] border-b-gray-400 pb-6'>
                         <h2 className='text-2xl text-[15px]'>Cart Totals</h2>

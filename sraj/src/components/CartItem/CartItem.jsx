@@ -5,6 +5,7 @@ import { deleteItem, incrementQuantity, resetCart, decrementQuantity } from '../
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
+import Cart2 from '../Cart2/Cart2'
 
 const CartDisplay = ({ productData }) => {
     const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const CartItem = () => {
                     <h2>Your Cart is Empty!!</h2>
                 ) : (
                     <>
-                        <CartDisplay productData={productData} />
+                        <Cart2 />
                         <button onClick={() => dispatch(resetCart()) & toast.error("Your Cart is now empty")} className='px-6 py-1 m-8 text-white bg-red-500 hover:bg-red-800 '>Reset Cart</button>
                     </>
                 )}
