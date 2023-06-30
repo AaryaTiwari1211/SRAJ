@@ -5,32 +5,37 @@ import contact2 from '../../assets/contact2.png'
 import email1 from '../../assets/email1.png'
 import Map from '../../components/Map/Map'
 import InputField from '../../components/InputField/InputField'
+import { useMediaQuery } from '@mui/material'
 
 const inputStyles = {
     container: {
         display: 'flex',
-        maxWidth: '500px',
-        flexDirection: 'row',
-        jusitfyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        margin: '10px 30px',
+        margin: '10px 0',
         gap: '20px',
+        flexWrap: 'wrap',
+        width: '100%',
     },
     label: {
+        flexBasis: '30%',
         fontSize: '16px',
-        width: '200px',
         display: 'block',
         fontWeight: 'bold',
         marginBottom: '5px',
     },
-    input: {
+    textarea: {
         padding: '5px',
         border: '1px solid #ccc',
         borderRadius: '5px',
-        width: '100%',
         fontSize: '16px',
+        flexBasis: '70%',
+        maxWidth: '300px',
+        width: '100%',
     },
 };
+
+
 
 const TextareaField = ({ label, value, onChange }) => {
     return (
@@ -39,8 +44,8 @@ const TextareaField = ({ label, value, onChange }) => {
                 {label}:
             </label>
             <textarea
-                rows={10}
-                cols={80}
+                rows={3}
+                cols={40}
                 id="textarea-field"
                 style={inputStyles.textarea}
                 value={value}
@@ -50,6 +55,7 @@ const TextareaField = ({ label, value, onChange }) => {
     );
 };
 function ContactUs() {
+    const md = useMediaQuery("(min-width:800px)")
     return (
 
         <>
@@ -209,7 +215,7 @@ function ContactUs() {
             </Box>
             <Box
                 sx={{
-                    height: '100vh',
+                    minHeight: '100vh',
                 }}
             >
                 <Box height={100} />
@@ -243,16 +249,21 @@ function ContactUs() {
                             justifyContent: 'center',
                         }}
                     >
-                        <Paper>
+                        <Paper elevation={6}
+                            sx={{
+                                width: md ? '400px' : '90%',
+                                margin: '20px',
+                                borderRadius: '10px'
+                            }}
+                        >
                             <Box
                                 sx={{
-                                    // maxWidth: '500px',
-                                    maxWidth: '400px',
+                                    width: '100%',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: '20px',
                                     justifyContent: 'center',
-                                    margin: '20px',
+                                    alignItems:'center'
                                 }}
                             >
                                 <form>
@@ -261,12 +272,30 @@ function ContactUs() {
                                             fontSize: '20px',
                                             fontFamily: 'Poppins',
                                             fontWeight: '700',
+                                            padding: '20px',
                                         }}
-                                    >Contact Us Form</Typography>
-                                    <InputField label="First Name " type="text" value="" onChange="" />
-                                    <InputField label="Last Name " type="text" value="" onChange="" />
-                                    <InputField label="Email " type="email" value="" onChange="" />
-                                    <TextareaField label="Feedback " type="text" value="" onChange="" />
+                                    >
+                                        Contact Us Form
+                                    </Typography>
+                                    <Box
+                                        sx={{
+                                            width: '100%',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '20px',
+                                            justifyContent: 'center',
+                                            alignItems: 'flex-start',
+                                            margin: '20px',
+                                        }}
+                                    >
+                                        <InputField label="First Name " type="text" value="" onChange="" />
+                                        <Box height={30} />
+                                        <InputField label="Last Name " type="text" value="" onChange="" />
+                                        <Box height={30} />
+                                        <InputField label="Email " type="email" value="" onChange="" />
+                                        <Box height={30} />
+                                        <TextareaField label="Feedback "  value="" onChange=""/>
+                                    </Box>
                                 </form>
                             </Box>
                         </Paper>

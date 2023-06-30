@@ -3,15 +3,16 @@ import React from 'react';
 const inputStyles = {
     container: {
         display: 'flex',
-        flexDirection: 'row',
-        jusitfyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        margin: '10px',
+        // margin: '10px 0',
         gap: '20px',
+        flexWrap: 'wrap',
+        width: '100%',
     },
     label: {
+        flexBasis: '30%',
         fontSize: '16px',
-        width:'200px',
         display: 'block',
         fontWeight: 'bold',
         marginBottom: '5px',
@@ -20,10 +21,12 @@ const inputStyles = {
         padding: '5px',
         border: '1px solid #ccc',
         borderRadius: '5px',
-        width: '100%',
         fontSize: '16px',
+        flexBasis: '70%',
     },
 };
+
+
 
 const InputField = ({ label, value, type, onChange }) => {
     return (
