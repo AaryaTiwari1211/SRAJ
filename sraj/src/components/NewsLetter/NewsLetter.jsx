@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography, TextField } from '@mui/material'
 import CustomButton from '../CustomButton/CustomButton'
 import { useMediaQuery } from '@mui/material'
+import InputField from '../InputField/InputField'
 
 const NewsLetter = () => {
     const md = useMediaQuery("(min-width:800px)")
