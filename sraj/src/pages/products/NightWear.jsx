@@ -1,8 +1,8 @@
 import React from 'react'
-import { products1 } from '../../firebase/firebase';
 import Products from '../../components/Products/Products';
 import HomeExtras from '../../components/Extra/HomeExtras';
-function NightWear() {
+
+function NightWear({products1}) {
     const nightwear = products1.filter(p => p.Category === "Nightwear");
 
     return (

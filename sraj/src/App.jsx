@@ -90,14 +90,14 @@ function App() {
           <Route path="/" element={<Home products={products2} />} />
           <Route path="/products" element={<Home products={products2} />} />
           <Route path="/product/:id" element={<Product2 />} />
-          <Route path="/products/sarees" element={<Sarees />} />
-          <Route path="/products/lehengas" element={<Lehengas />} />
-          <Route path="/products/nightwear" element={<NightWear />} />
-          <Route path="/products/jewellery" element={<Jewellery />} />
-          <Route path="/products/bedsheets" element={<Bedsheets />} />
-          <Route path="/products/kurtas" element={<Kurtas />} />
-          <Route path="/products/linen" element={<Linen />} />
-          <Route path="/products/suits" element={<Suits />} />
+          <Route path="/products/sarees" element={<Sarees products1={products2} />} />
+          <Route path="/products/lehengas" element={<Lehengas products1={products2} />} />
+          <Route path="/products/nightwear" element={<NightWear products1={products2}/>} />
+          <Route path="/products/jewellery" element={<Jewellery products1={products2}/>} />
+          <Route path="/products/bedsheets" element={<Bedsheets products1={products2}/>} />
+          <Route path="/products/kurtas" element={<Kurtas products1={products2}/>} />
+          <Route path="/products/linen" element={<Linen products1={products2}/>} />
+          <Route path="/products/suits" element={<Suits products1={products2}/>} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />
