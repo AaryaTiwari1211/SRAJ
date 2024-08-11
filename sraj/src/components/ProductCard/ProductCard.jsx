@@ -15,7 +15,7 @@ function ProductCard({ product }) {
     const md = useMediaQuery("(min-width:1024px)")
     
     const handleDetails = () => {
-        navigate(`/product/${product.id}`, {
+        navigate(`/product/${product.Name}`, {
             state: {
                 item: product
             }
@@ -28,7 +28,7 @@ function ProductCard({ product }) {
                 <img
                     src={product.Images && product.Images.length > 0 ? product.Images[0] : ''}
                     alt="Image"
-                    className="object-cover w-full h-full duration-500 hover:scale-110"
+                    className="object-contain w-full h-full duration-500 hover:scale-110"
                 />
             </div>
             <div className='w-full border-[1px] px-2 py-4'>

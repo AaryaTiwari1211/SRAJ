@@ -5,6 +5,8 @@ import CarouselComp from '../../components/Carousel/Carousel';
 import 'react-toastify/dist/ReactToastify.css';
 import Products from '../../components/Products/Products';
 import HomeExtras from '../../components/Extra/HomeExtras';
+import { products1 } from '../../firebase/firebase';
+import { addProducts } from '../../firebase/firebase';
 
 function Home({ products }) {
     return (
