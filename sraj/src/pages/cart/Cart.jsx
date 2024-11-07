@@ -16,16 +16,8 @@ function Cart() {
     const [totalAmt, setTotalAmt] = useState('');
     const [payNow, setPayNow] = useState(false);
     const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(false);
-    const [userAddress, setUserAddress] = useState('');
-
-
     const handleCheckout = async () => {
         try {
-            if (!userAddress) {
-                toast.error('Please enter your wallet address to proceed with the payment');
-                return;
-            }
-
             if (!isMetamaskInstalled) {
                 toast.error('You do not have Metamask installed on your browser to proceed with the payment');
                 return;
@@ -38,18 +30,15 @@ function Cart() {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            // Validate the provided user address
-            ethers.utils.getAddress(userAddress);
-
             // Ensure totalAmt is defined and is a valid number
             if (!totalAmt || isNaN(totalAmt)) {
                 toast.error('Invalid amount. Please check and try again.');
                 return;
             }
 
-            // Send transaction
+            let receiver = import.meta.env.VITE_RECEIVER_ADDRESS;
             const tx = await signer.sendTransaction({
-                to: '0x38E4eFC439Ef728716511817F0a508F53252c2b9',
+                to: receiver,
                 value: ethers.utils.parseEther(totalAmt.toString())
             });
 
@@ -115,9 +104,6 @@ function Cart() {
                     <p className='font-titleFont font-semibold flex justify-between text-[15px] mt-6'>
                         Total <span className='text-[15px] font-bold'>${totalAmt}</span>
                     </p>
-                    <input type='text' value={userAddress} onChange={(e) => {
-                        setUserAddress(e.target.value);
-                    }} placeholder='Enter your wallet address' className='w-full h-12 mt-6 px-4 border-[1px] border-gray-400' />
                     <button
                         onClick={handleCheckout}
                         className='w-full py-3 mt-6 text-base text-white duration-500 bg-black hover:bg-red-500'
