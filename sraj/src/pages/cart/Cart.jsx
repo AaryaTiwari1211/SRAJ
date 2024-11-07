@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
 import { useSelector, useDispatch } from 'react-redux';
 import cartBanner from '../../assets/pinkbanner.jpg';
 import CartItem from '../../components/CartItem/CartItem';
@@ -14,14 +15,56 @@ function Cart() {
     const userInfo = useSelector((state) => state.auth);
     const [totalAmt, setTotalAmt] = useState('');
     const [payNow, setPayNow] = useState(false);
+    const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(false);
+    const [userAddress, setUserAddress] = useState('');
 
-    const handleCheckout = () => {
-        if (userInfo) {
-            setPayNow(true);
-        } else {
-            toast.error('Please sign in for checkout');
+
+    const handleCheckout = async () => {
+        try {
+            if (!userAddress) {
+                toast.error('Please enter your wallet address to proceed with the payment');
+                return;
+            }
+
+            if (!isMetamaskInstalled) {
+                toast.error('You do not have Metamask installed on your browser to proceed with the payment');
+                return;
+            }
+
+            // Request account access if needed
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            // Initialize provider and signer
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+
+            // Validate the provided user address
+            ethers.utils.getAddress(userAddress);
+
+            // Ensure totalAmt is defined and is a valid number
+            if (!totalAmt || isNaN(totalAmt)) {
+                toast.error('Invalid amount. Please check and try again.');
+                return;
+            }
+
+            // Send transaction
+            const tx = await signer.sendTransaction({
+                to: '0x38E4eFC439Ef728716511817F0a508F53252c2b9',
+                value: ethers.utils.parseEther(totalAmt.toString())
+            });
+
+            // Notify user of the successful transaction initiation
+            toast.success('Transaction sent! Please wait for confirmation.');
+
+            // Optional: Handle the transaction receipt or confirmation if needed
+            await tx.wait(); // Waits for transaction confirmation
+            toast.success('Transaction confirmed!');
+        } catch (error) {
+            console.error(error);
+            toast.error(`Transaction failed: ${error.message || "An error occurred"}`);
         }
     };
+
 
     const payment = async (token) => {
         const amountInCents = Math.round(totalAmt * 100);
@@ -38,6 +81,12 @@ function Cart() {
         });
         setTotalAmt(price);
     }, [productData]);
+
+    useEffect(() => {
+        if (window.ethereum) {
+            setIsMetamaskInstalled(true);
+        }
+    }, [])
 
     const updateTotalAmt = (newTotal) => {
         setTotalAmt(newTotal);
@@ -66,27 +115,15 @@ function Cart() {
                     <p className='font-titleFont font-semibold flex justify-between text-[15px] mt-6'>
                         Total <span className='text-[15px] font-bold'>${totalAmt}</span>
                     </p>
+                    <input type='text' value={userAddress} onChange={(e) => {
+                        setUserAddress(e.target.value);
+                    }} placeholder='Enter your wallet address' className='w-full h-12 mt-6 px-4 border-[1px] border-gray-400' />
                     <button
                         onClick={handleCheckout}
                         className='w-full py-3 mt-6 text-base text-white duration-500 bg-black hover:bg-red-500'
                     >
                         Proceed to Checkout
                     </button>
-                    {payNow && (
-                        <>
-                            <div className='flex items-center justify-center w-full mt-6'>
-                                <StripeCheckout
-                                    stripeKey='pk_test_51NIS0USCLREXlhDNrwIVhIL0wMTPPAw92LYYmsFry8rBBpxiNg0HYSlOu8CV7E9GeZb4zdBwQMO8xNpO1RvjJeuG00FcrD8VRH'
-                                    name='SRAJ FASHION'
-                                    amount={totalAmt * 100}
-                                    label='Pay to SRAJ FASHION'
-                                    description={`Your payment amount is $${totalAmt}`}
-                                    email={userInfo.email}
-                                    token={payment}
-                                />
-                            </div>
-                        </>
-                    )}
                 </div>
             </div>
             <NewsLetter />
