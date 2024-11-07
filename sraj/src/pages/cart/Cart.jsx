@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Cart2 from '../../components/Cart2/Cart2';
 import NewsLetter from '../../components/NewsLetter/NewsLetter';
+import { doc, setDoc } from "firebase/firestore";
+
 
 function Cart() {
     const productData = useSelector((state) => state.bazar.productData);
@@ -16,6 +18,7 @@ function Cart() {
     const [totalAmt, setTotalAmt] = useState('');
     const [payNow, setPayNow] = useState(false);
     const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(false);
+
     const handleCheckout = async () => {
         try {
             if (!isMetamaskInstalled) {
@@ -23,7 +26,6 @@ function Cart() {
                 return;
             }
 
-            // Request account access if needed
             await window.ethereum.request({ method: 'eth_requestAccounts' });
 
             // Initialize provider and signer
@@ -43,14 +45,19 @@ function Cart() {
             });
 
             // Notify user of the successful transaction initiation
-            toast.success('Transaction sent! Please wait for confirmation.');
+            toast.success('NFT Minted Sucessfully');
+            await setDoc(doc(db, "orders", userInfo.uid), {
+                txn: tx.hash,
+                amount: totalAmt,
+                status: 'pending',
+                products: productData
+            })
 
-            // Optional: Handle the transaction receipt or confirmation if needed
             await tx.wait(); // Waits for transaction confirmation
             toast.success('Transaction confirmed!');
         } catch (error) {
             console.error(error);
-            toast.error(`Transaction failed: ${error.message || "An error occurred"}`);
+            toast.error(`NFT Minting failed!!`);
         }
     };
 
