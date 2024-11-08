@@ -10,6 +10,7 @@ import axios from 'axios';
 import Cart2 from '../../components/Cart2/Cart2';
 import NewsLetter from '../../components/NewsLetter/NewsLetter';
 import { doc, setDoc } from "firebase/firestore";
+import { db } from '../../firebase/firebase';
 
 
 function Cart() {
