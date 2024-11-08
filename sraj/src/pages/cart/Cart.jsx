@@ -51,6 +51,8 @@ function Cart() {
                 amount: totalAmt,
                 status: 'pending',
                 products: productData
+            }).then(() => {
+                console.log("Document successfully written!");
             })
 
             await tx.wait(); // Waits for transaction confirmation
