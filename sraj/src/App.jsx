@@ -98,7 +98,7 @@ function App() {
           <Route path="/products/kurtas" element={<Kurtas products1={products2}/>} />
           <Route path="/products/linen" element={<Linen products1={products2}/>} />
           <Route path="/products/suits" element={<Suits products1={products2}/>} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/myorders" element={<Orders />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contactus" element={<ContactUs />} />

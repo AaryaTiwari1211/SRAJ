@@ -134,7 +134,7 @@ function Header() {
                                 </ShowOnLogout>
                                 <ShowOnLogin>
                                     <NavLink to='/myorders' className={ActiveLink}>
-                                        My Orders
+                                        My NFTs
                                     </NavLink>
                                     <NavLink to='#'>
                                         Hi, {username}
