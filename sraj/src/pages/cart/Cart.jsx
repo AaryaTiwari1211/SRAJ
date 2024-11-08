@@ -46,6 +46,7 @@ function Cart() {
 
             // Notify user of the successful transaction initiation
             toast.success('NFT Minted Sucessfully');
+            console.log(userInfo.uid);
             await setDoc(doc(db, "orders", userInfo.uid), {
                 txn: tx.hash,
                 amount: totalAmt,
